@@ -1,5 +1,6 @@
-import { hubLayout, HUB_WIDTH, HUB_HEIGHT } from "./HubLayout";
+import { hubLayout, HUB_WIDTH, HUB_HEIGHT, TILE_SIZE } from "./HubLayout";
 import { HubTile } from "./HubTile";
+import { PlayerCursor } from "../../components/PlayerCursor";
 import { useNavigationStore } from "../../utils/navigationStore";
 
 
@@ -12,11 +13,12 @@ export function HubScene() {
 
     return (
         <div className="hub-container">
+            <PlayerCursor x={position.x} y={position.y} />
             <div
                 className="hub-grid"
                 style={{
-                    gridTemplateColumns: `repeat(${HUB_WIDTH}, 1fr)`,
-                    gridTemplateRows: `repeat(${HUB_HEIGHT}, 1fr)`
+                    gridTemplateColumns: `repeat(${HUB_WIDTH}, ${TILE_SIZE}px)`,
+                    gridTemplateRows: `repeat(${HUB_HEIGHT}, ${TILE_SIZE}px)`
                 }}
             >
                 {tiles.map((_, index) => {

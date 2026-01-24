@@ -8,8 +8,10 @@ html, body, #root {
 
 
 .hub-container {
-    width: 100vw;
-    height: 100vh;
+    position: relative;
+    width: calc(9 * 80px);
+    height: calc(9 * 80px);
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,7 +28,9 @@ html, body, #root {
 
 .hub-tile {
     background: rgba(255,255,255,0.04);
+    transition: background 0.2s ease;
     border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,11 +40,44 @@ html, body, #root {
 
 
 .hub-tile.active {
-    outline: 2px solid #6cf;
-    box-shadow: 0 0 12px #6cf;
+    background: rgba(99,102,241,0.15);
 }
 
 
 .hub-tile.core {
     background: rgba(108,207,255,0.15);
+}
+
+
+.hub-tile:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.9);
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.9);
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+.player-cursor {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle at top left,
+        rgba(99,102,241,0.9),
+        rgba(99,102,241,0.4)
+    );
+
+    box-shadow:
+        0 0 20px rgba(99,102,241,0.6),
+        inset 0 0 10px rgba(255,255,255,0.2);
 }

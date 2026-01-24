@@ -24,6 +24,10 @@ export function KeyboardController() {
 
 useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
+        if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","w","a","s","d"].includes(e.key)) {
+            e.preventDefault();
+        }
+        
         const move = keyMap[e.key];
 
         if (move) {
@@ -60,7 +64,7 @@ useEffect(() => {
             toggleTerminal();
         }
     }
-    
+
     window.addEventListener("keydown", handleKeyDown);
     return () => {
         window.removeEventListener("keydown", handleKeyDown);

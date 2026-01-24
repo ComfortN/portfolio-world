@@ -18,6 +18,8 @@ label?: string;
 
 export const HUB_WIDTH = 9;
 export const HUB_HEIGHT = 9;
+export const TILE_SIZE = 70; // px
+
 
 
 // Grid origin is top-left (0,0)
