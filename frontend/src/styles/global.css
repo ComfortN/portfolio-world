@@ -1,0 +1,46 @@
+html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #0a0f1f;
+}
+
+
+.hub-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.hub-grid {
+    width: min(90vh, 90vw);
+    height: min(90vh, 90vw);
+    display: grid;
+    gap: 6px;
+}
+
+
+.hub-tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #9aa4ff;
+}
+
+
+.hub-tile.active {
+    outline: 2px solid #6cf;
+    box-shadow: 0 0 12px #6cf;
+}
+
+
+.hub-tile.core {
+    background: rgba(108,207,255,0.15);
+}
