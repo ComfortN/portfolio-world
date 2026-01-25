@@ -1,21 +1,31 @@
+import { motion } from "framer-motion";
 import { hubLayout, HUB_WIDTH, HUB_HEIGHT, TILE_SIZE } from "./HubLayout";
 import { HubTile } from "./HubTile";
+import { RippleOverlay } from "../../components/RippleOverlay";
 import { PlayerCursor } from "../../components/PlayerCursor";
 import { useNavigationStore } from "../../utils/navigationStore";
 
-
 export function HubScene() {
-    const { position } = useNavigationStore();
-
+    const { position, isTransitioning, finishTransition } = useNavigationStore();
 
     const tiles = Array.from({ length: HUB_WIDTH * HUB_HEIGHT });
-
 
     return (
         <div className="hub-container">
             <PlayerCursor x={position.x} y={position.y} />
-            <div
+            
+            {isTransitioning && (
+                <RippleOverlay
+                    x={position.x * TILE_SIZE}
+                    y={position.y * TILE_SIZE}
+                    onComplete={finishTransition}
+                />
+            )}
+            
+            <motion.div
                 className="hub-grid"
+                animate={{ opacity: isTransitioning ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
                 style={{
                     gridTemplateColumns: `repeat(${HUB_WIDTH}, ${TILE_SIZE}px)`,
                     gridTemplateRows: `repeat(${HUB_HEIGHT}, ${TILE_SIZE}px)`
@@ -25,10 +35,8 @@ export function HubScene() {
                     const x = index % HUB_WIDTH;
                     const y = Math.floor(index / HUB_WIDTH);
 
-
                     const tile = hubLayout.find(t => t.x === x && t.y === y);
                     const isActive = position.x === x && position.y === y;
-
 
                     return (
                         <HubTile
@@ -39,7 +47,7 @@ export function HubScene() {
                         />
                     );
                 })}
-            </div>
+            </motion.div>
         </div>
     );
 }

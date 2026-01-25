@@ -16,7 +16,9 @@ interface NavigationState {
 
     // World state
     currentWorld: TileType | null;
+    isTransitioning: boolean;
     enterWorld: (world: TileType) => void;
+    finishTransition: () => void;
     exitWorld: () => void;
 
 
@@ -33,19 +35,23 @@ export const useNavigationStore = create<NavigationState>((set) => ({
 
     setPosition: (pos) => set({ position: pos }),
 
-
+    // World
     currentWorld: null,
-
+    isTransitioning: false,
 
     enterWorld: (world) =>
-        set({ currentWorld: world }),
+        set({ currentWorld: world,
+            isTransitioning: true }),
 
+    finishTransition: () =>
+        set({ isTransitioning: false }),
 
     exitWorld: () =>
-        set({ currentWorld: null }),
+        set({ currentWorld: null,
+            isTransitioning: true
+         }),
 
     terminalOpen: false,
-
 
     toggleTerminal: () =>
         set((state) => ({ terminalOpen: !state.terminalOpen }))
