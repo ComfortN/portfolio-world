@@ -5,6 +5,7 @@ import { RippleOverlay } from "../../components/RippleOverlay";
 import { PlayerCursor } from "../../components/PlayerCursor";
 import { useSound } from "../../hooks/useSound";
 import { useNavigationStore } from "../../utils/navigationStore";
+import { MuteToggle } from "../../components/MuteToggle";
 import { useEffect } from "react";
 
 
@@ -21,6 +22,7 @@ export function HubScene() {
 
     return (
         <div className="hub-container">
+            <MuteToggle />
             <PlayerCursor x={position.x} y={position.y} />
             
             {isTransitioning && (

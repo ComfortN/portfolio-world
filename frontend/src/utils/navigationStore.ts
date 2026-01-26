@@ -25,6 +25,11 @@ interface NavigationState {
     // Terminal
     terminalOpen: boolean;
     toggleTerminal: () => void;
+
+
+    // Audio
+    muted: boolean;
+    toggleMute: () => void;
 }
 
 
@@ -49,7 +54,17 @@ export const useNavigationStore = create<NavigationState>((set) => ({
     exitWorld: () =>
         set({ currentWorld: null,
             isTransitioning: true
-         }),
+        }),
+    
+    // Audio
+    muted: localStorage.getItem("muted") === "true",
+
+    toggleMute: () =>
+        set((state) => {
+            const next = !state.muted;
+            localStorage.setItem("muted", String(next));
+            return { muted: next };
+        }),
 
     terminalOpen: false,
 

@@ -51,6 +51,9 @@ useEffect(() => {
             return;
         }
 
+        
+
+
         if (e.key === "Enter") {
             const tile = hubLayout.find(
                 t => t.x === position.x && t.y === position.y
@@ -64,6 +67,14 @@ useEffect(() => {
         if (e.key === "Escape") {
             exitWorld();
         }
+
+
+        const toggleMute = useNavigationStore((s) => s.toggleMute);
+
+        if (e.key.toLowerCase() === "m") {
+            toggleMute();
+        }
+        
 
         if (e.key === "`" || e.key === "~") {
             toggleTerminal();

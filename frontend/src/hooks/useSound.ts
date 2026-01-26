@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
+import { useNavigationStore } from "../utils/navigationStore";
+
 
 type SoundName =
     | "move"
@@ -14,19 +16,26 @@ const SOUND_FILES: Record<SoundName, string> = {
 };
 
 export function useSound() {
-    const audioRefs = useRef<Record<string, HTMLAudioElement>>({});
+    const audioRefs = useRef<Record<SoundName, HTMLAudioElement>>({});
+    const muted = useNavigationStore((s) => s.muted);
 
-    function play(name: SoundName, volume = 0.6) {
-        if (!audioRefs.current[name]) {
-            const audio = new Audio(SOUND_FILES[name]);
-            audio.volume = volume;
-            audioRefs.current[name] = audio;
-        }
+    const play = useCallback(
+        (name: SoundName, volume = 0.6) => {
+            if (muted) return;
 
-        const audio = audioRefs.current[name];
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-    }
+            if (!audioRefs.current[name]) {
+                const audio = new Audio(SOUND_FILES[name]);
+                audio.volume = volume;
+                audio.preload = "auto";
+                audioRefs.current[name] = audio;
+            }
+
+            const audio = audioRefs.current[name];
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+        },
+        [muted]
+    );
 
     return { play };
 }
