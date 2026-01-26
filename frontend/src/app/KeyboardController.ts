@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { hubLayout, HUB_WIDTH, HUB_HEIGHT, type TileType } from "../worlds/MainHub/HubLayout";
 import { useNavigationStore } from "../utils/navigationStore";
+import { useSound } from "../hooks/useSound";
+
 
 const keyMap: Record<string, { dx: number; dy: number }> = {
     ArrowUp: { dx: 0, dy: -1 },
@@ -21,13 +23,15 @@ export function KeyboardController() {
         exitWorld,
         toggleTerminal
     } = useNavigationStore();
+    const { play } = useSound();
+
 
 useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
         if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","w","a","s","d"].includes(e.key)) {
             e.preventDefault();
         }
-        
+
         const move = keyMap[e.key];
 
         if (move) {
@@ -42,6 +46,7 @@ useEffect(() => {
                 nextY < HUB_HEIGHT
             ) {
                 setPosition({ x: nextX, y: nextY });
+                play("move", 0.5);
             }
             return;
         }

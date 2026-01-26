@@ -3,12 +3,21 @@ import { hubLayout, HUB_WIDTH, HUB_HEIGHT, TILE_SIZE } from "./HubLayout";
 import { HubTile } from "./HubTile";
 import { RippleOverlay } from "../../components/RippleOverlay";
 import { PlayerCursor } from "../../components/PlayerCursor";
+import { useSound } from "../../hooks/useSound";
 import { useNavigationStore } from "../../utils/navigationStore";
+import { useEffect } from "react";
+
 
 export function HubScene() {
     const { position, isTransitioning, finishTransition } = useNavigationStore();
+    const { play } = useSound();
 
     const tiles = Array.from({ length: HUB_WIDTH * HUB_HEIGHT });
+    useEffect(() => {
+        if (isTransitioning) {
+            play("ripple", 0.6);
+        }
+    }, [isTransitioning, play]);
 
     return (
         <div className="hub-container">
@@ -18,7 +27,10 @@ export function HubScene() {
                 <RippleOverlay
                     x={position.x * TILE_SIZE}
                     y={position.y * TILE_SIZE}
-                    onComplete={finishTransition}
+                    onComplete={() => {
+                        finishTransition();
+                        play("ripple", 0.5);
+                    }}
                 />
             )}
             
