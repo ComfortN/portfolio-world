@@ -1,46 +1,54 @@
 import React from "react";
+import { PresenceLine } from "./PresenceLine";
 import "../../styles/about.css";
 
 export function AboutData() {
     return (
-        <div className="about-grid">
-            <section className="panel">
-                <header>PROFILE :: OVERVIEW</header>
+        <div className="about-layout">
+
+            {/* LEFT — IDENTITY */}
+            <section className="panel identity-panel">
+                <header>IDENTITY</header>
                 <div className="panel-body">
-                    <p><strong>Name</strong> Comfort Ngwenya</p>
-                    <p><strong>Role</strong> Software Developer</p>
-                    <p><strong>Focus</strong> AI Systems · Frontend · Data</p>
+                    <p className="identity-name">Nqobile Ngwenya</p>
+                    <p className="identity-role">Software Developer</p>
+                    <p className="identity-meta">South Africa</p>
                 </div>
             </section>
 
-            <section className="panel">
-                <header>BACKGROUND :: SUMMARY</header>
-                <div className="panel-body">
-                    <p>
-                        I build interactive systems that sit at the intersection
-                        of software engineering and applied artificial intelligence.
-                        My focus is on clarity, accessibility, and ethical data usage.
-                    </p>
+            {/* CENTER — PRESENCE (ANIMATED) */}
+            <section className="panel presence-panel">
+                <header>ABOUT ME</header>
+                <div className="panel-body presence-body">
+                    <PresenceLine
+                        delay={0.2}
+                        text="I design and build interactive digital systems with a focus on clarity, intention, and human-centered problem solving."
+                    />
 
-                    <p>
-                        I enjoy translating complex technical ideas into intuitive
-                        user experiences while maintaining strong architectural
-                        foundations across the stack.
-                    </p>
+                    <PresenceLine
+                        delay={0.6}
+                        text="My work lives at the intersection of software engineering, applied artificial intelligence, and thoughtful interface design."
+                    />
+
+                    <PresenceLine
+                        delay={1.0}
+                        text="I care deeply about how people experience technology, and how responsible design decisions shape trust."
+                    />
                 </div>
             </section>
 
-            <section className="panel">
-                <header>CORE :: COMPETENCIES</header>
-                <div className="panel-body tags">
-                    <span>Artificial Intelligence</span>
-                    <span>Machine Learning Foundations</span>
-                    <span>React & TypeScript</span>
-                    <span>API Design</span>
-                    <span>Data Analysis</span>
-                    <span>Responsible AI</span>
+            {/* RIGHT — PHILOSOPHY */}
+            <section className="panel philosophy-panel">
+                <header>PHILOSOPHY</header>
+                <div className="panel-body philosophy-list">
+                    <span>Clarity over complexity</span>
+                    <span>Systems before features</span>
+                    <span>Ethical AI by design</span>
+                    <span>Accessibility as default</span>
+                    <span>Learning in public</span>
                 </div>
             </section>
+
         </div>
     );
 }

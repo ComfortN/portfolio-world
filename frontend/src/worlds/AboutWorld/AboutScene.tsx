@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { AboutData } from "./AboutData";
+import { CameraRig } from "./CameraRig";
 import { useNavigationStore } from "../../utils/navigationStore";
 
 export function AboutScene() {
@@ -21,7 +22,9 @@ export function AboutScene() {
                 ⬅ Back
             </button>
 
-            <AboutData />
+            <CameraRig >
+                <AboutData />
+            </CameraRig>
         </motion.div>
     );
 }
