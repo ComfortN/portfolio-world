@@ -1,5 +1,6 @@
 import { useNavigationStore } from "../utils/navigationStore";
 import { HubScene } from "./MainHub/HubScene";
+import { SkillsScene } from "./SkillsWorld/SkillsScene";
 import { AboutScene } from "./AboutWorld/AboutScene";
 
 export function WorldRouter() {
@@ -13,6 +14,8 @@ export function WorldRouter() {
     switch (currentWorld) {
         case "ABOUT":
             return <AboutScene />;
+        case "SKILLS":
+            return <SkillsScene />;
 
         default:
             return <HubScene />;

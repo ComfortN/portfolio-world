@@ -1,0 +1,55 @@
+.skill-detail-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 90vw);
+    height: 100vh;
+    background: rgba(2, 6, 23, 0.95);
+    border-left: 1px solid rgba(125, 211, 252, 0.3);
+    padding: 2rem;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+}
+
+.skill-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.skill-category {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #7dd3fc;
+    letter-spacing: 0.1em;
+}
+
+.skill-description {
+    margin: 1.5rem 0;
+    line-height: 1.6;
+}
+
+.skill-stack {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.skill-stack li {
+    font-family: monospace;
+    font-size: 0.75rem;
+    border: 1px solid rgba(125, 211, 252, 0.3);
+    padding: 0.4rem 0.6rem;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #7dd3fc;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
