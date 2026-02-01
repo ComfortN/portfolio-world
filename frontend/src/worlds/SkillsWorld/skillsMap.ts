@@ -8,6 +8,20 @@ export interface SkillNode {
     stack?: string[];
 }
 
+export interface SkillLink {
+    from: string;
+    to: string;
+}
+
+export const skillLinks: SkillLink[] = [
+    { from: "react", to: "ts" },
+    { from: "react", to: "fastapi" },
+    { from: "fastapi", to: "ml" },
+    { from: "ml", to: "nlp" },
+    { from: "git", to: "react" },
+];
+
+
 export const skillsMap: SkillNode[] = [
     {
         id: "react",

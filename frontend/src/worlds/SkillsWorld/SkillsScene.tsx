@@ -3,6 +3,7 @@ import { SkillNode } from "./SkillNode";
 import { skillsMap, type SkillNode as Skill } from "./skillsMap";
 import { useNavigationStore } from "../../utils/navigationStore";
 import { SkillDetailPanel } from "./SkillDetailPanel";
+import { SkillLinksLayer } from "./SkillLinkLayer";
 
 type Direction = "up" | "down" | "left" | "right";
 
@@ -89,6 +90,7 @@ export function SkillsScene() {
             </button>
 
             <div className="skills-layer">
+                <SkillLinksLayer activeSkillId={activeId} />
                 {skillsMap.map(skill => (
                     <div
                         key={skill.id}
